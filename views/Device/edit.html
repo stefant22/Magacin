@@ -1,0 +1,40 @@
+{% extends "_global/index.html" %}
+{% block title %}edit {% endblock %}
+
+{% block main %}
+
+<form method="POST">
+    <div class="form-row">
+      <div class="col">
+          Bar Code: 
+        <input type="text" name="bar_code" id="bar_code" class="form-control" placeholder="{{infos.bar_code}}" value="{{infos.bar_code}}">
+        <br>
+        Serial Number:
+        <input type="text" name="serial_number" class="form-control" placeholder="{{infos.serial_number}}" value="{{infos.serial_number}}">
+        <br>
+     
+
+      </div>
+      <div class="col">
+        Lokacija:
+          <select id="location_id" name="location_id" class="form-control">
+              {% for location in locations %}
+                   <option type="text" id="{{location.location_id}}" name="{{location.location_id}}" value="{{location.location_id}}" >{{location.location_name}}</option>
+            {% endfor %}
+                 </select>
+        
+        <br>
+        Garancija : 
+        <input type="text" name="garancija" class="form-control" placeholder="{{infos.garancija}}" value="{{infos.garancija}}">
+         <br>
+         Korisnik : 
+        <input type="text" name="korisnik" class="form-control" placeholder="{{infos.korisnik}}" value="{{infos.korisnik}}">
+
+        <button type="submit" class="btn btn-primary mb-2">Izmeni</button>
+      </div>
+    </div>
+
+    
+  </form>
+
+{% endblock %}

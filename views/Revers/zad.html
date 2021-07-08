@@ -1,0 +1,46 @@
+{% extends "_global/index.html" %}
+{% block title %}{{podaci[0].revers_holder}}{% endblock %}
+{% block main %}
+
+
+
+<h4>{{podaci[0].korisnik}}</h4>
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+      <tr>
+        <th scope="col">Model Type</th>
+        <th scope="col">Model Name</th>
+        <th scope="col">Bar Code</th>
+     
+        <th scope="col">Ram</th>
+        <th scope="col">Processor</th>
+     
+   
+  
+        <th scope="col">trenutna ekspozitura</th>
+      </tr>
+    </thead>
+    {% for podatak in podaci %}
+    <tbody>
+      <tr>
+        <th scope="row">{{podatak.model_type_name}}</th>
+        <td> {{podatak.model_name|escape}}</td>
+        </td>
+        <td>{{podatak.bar_code|escape|default("-")}}</td>
+
+        <td>{{podatak.ram|escape|default("-")}}</td>
+        <td>{{podatak.processor|escape|default("-")}}</td>
+    
+
+        <td>{{podatak.location_name|escape|default("-")}}</td>
+  
+      </tr>
+  
+    </tbody>
+    {% endfor %}
+ 
+  </table>
+  <div class="text-center"> <a class='dugme ' href="javascript:window.print();">  <button  type="button" class="btn btn-primary "> Stampaj</button></a> </div>
+{% endblock %}

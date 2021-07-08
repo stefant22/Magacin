@@ -1,0 +1,111 @@
+{% extends "_global/index.html" %}
+{% block title %}Dodaj uređaj{% endblock %}
+
+{% block main %}
+
+<br>
+
+
+<table class="table table-bordered text-center">
+
+  <thead style="background-color: lightgrey;">
+      <tr>
+          <th scope="col">Br</th>
+          <th scope="col">Tip</th>
+          <th scope="col">Model</th>
+          <th scope="col">Bar kod</th>
+       
+
+
+
+      </tr>
+  </thead>
+  {% for d in revs %}
+  {% set br =br + 1 %}
+  <tbody>
+      <tr>
+          <td>{{br}}</td>
+          <td>{{d.model_type_name|escape}}</td>
+          <td>{{d.model_name|escape}}</td>
+          <td>{{d.bar_code|escape}}</td>
+     
+
+
+      </tr>
+
+  </tbody>
+  {% endfor %}
+
+</table>
+
+
+
+
+<form  method="POST">
+        <div class="form-row">
+          <div class="col">
+
+
+
+
+           Bar code:
+     {% if revers.type == 'razduzenje' %}
+            <select name="device_id" class="form-control">
+
+              
+      {% for device in nmag %}
+                <option  type="text" id="{{device.device_id}}" name="{{location.location_id}}" value="{{device.device_id}}" >{{device.bar_code}} &nbsp; &nbsp; - &nbsp; &nbsp; {{device.model_name}}</option>
+         {% endfor %} 
+
+      
+
+
+              </select>
+
+              <select name="ispravan" class="form-control">
+          
+                <option  type="text" id="ispravan" value="da" >Ispravan</option>
+                <option  type="text" id="neispravan"  value="ne" >Neispravan</option>
+                <option  type="text" id="zaTehnicki"  value="zaTehnicki" >Za Tehnicki</option>
+   
+              </select>
+
+{% endif %}
+
+
+
+{% if revers.type == 'zaduzenje' %}
+<select name="device_id" class="form-control">
+
+  
+{% for device in mag %}
+    <option  type="text" id="{{device.device_id}}" name="{{location.location_id}}" value="{{device.device_id}}" >{{device.bar_code}} &nbsp; &nbsp; - &nbsp; &nbsp; {{device.model_name}}</option>
+{% endfor %} 
+
+
+
+
+  </select>
+
+{% endif %}
+            
+
+              
+
+
+              
+     
+             
+             <br>
+    
+            <button type="submit" class="btn btn-primary mb-2">Dodaj uređaj</button>
+
+           {{revs.revers_holder}}
+    
+          </div>
+    
+        </div>
+      </form>
+    
+    <a href= "{{BASE}}reversi">  <button type="submit" class="btn btn-primary mb-2"> Zavrsi revers </button> </a>
+{% endblock %}

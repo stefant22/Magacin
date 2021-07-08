@@ -1,0 +1,55 @@
+{% extends "_global/index.html" %}
+{% block title %}{{ekspozitura[0].location_name}}{% endblock %}
+
+
+
+{% block main %}
+
+
+
+<h4>{{ekspozitura[0].location_name}}</h4>
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+      <tr>
+        <th scope="col">Model Type</th>
+        <th scope="col">Model Name</th>
+        <th scope="col">Bar Code</th>
+     
+        <th scope="col">Ram</th>
+        <th scope="col">Processor</th>
+     
+   
+  
+        <th scope="col">trenutna ekspozitura</th>
+        <th scope="col">zaduzio</th>
+      </tr>
+    </thead>
+    {% for eks in ekspozitura %}
+    <tbody>
+      <tr>
+        <th scope="row">{{eks.model_type_name}}</th>
+        <td> <a href="{{BASE}}model/{{eks.model_id}}"> {{eks.model_name|escape}} </a></td>
+        </td>
+        <td>{{eks.bar_code|escape|default("-")}}</td>
+
+        <td>{{eks.ram|escape|default("-")}}</td>
+        <td>{{eks.processor|escape|default("-")}}</td>
+    
+
+        <td>{{eks.location_name|escape|default("-")}}</td>  
+        <td><a href="{{BASE}}zaduzenja/{{eks.korisnik}}">{{eks.korisnik}}</a></td>   
+  
+      </tr>
+  
+    </tbody>
+    {% endfor %}
+ 
+  </table>
+  <div class="text-center"> <a class='dugme ' href="javascript:window.print();">  <button  type="button" class="btn btn-primary "> Stampaj</button></a> </div>
+
+
+
+
+{% endblock %}

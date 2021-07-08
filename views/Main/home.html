@@ -1,0 +1,61 @@
+{% extends "_global/index.html" %}
+{% block title %}Svi uređaji{% endblock %}
+
+
+
+{% block main %}
+
+
+
+
+<input  id="myInput" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Pretraga">
+<br>
+<table class=" table table-bordered table-hover fixed-table-body">
+
+  <thead>
+    <tr>
+      <th scope="col">Model Type</th>
+      <th scope="col">Model Name</th>
+      <th scope="col">Bar Code</th>
+
+      <th scope="col">Ram</th>
+      <th scope="col">Processor</th>
+      <th scope="col">Inch</th>
+      <th scope="col">Ports</th>
+
+      <th scope="col">Description</th>
+
+      <th scope="col">Garancija</th>
+      <th scope="col">Location</th>
+      <th scope="col">Korisnik</th>
+      <th scope="col">History</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  {% for device in devices %}
+  <tbody id="myTable">
+    <tr>
+      <th scope="row">{{device.model_type_name}}</th>
+      <td><a href="{{BASE}}model/{{device.model_id}}"> {{device.model_name|escape}}</td>
+
+      <td>{{device.bar_code|escape|default("-")}}</td>
+
+      <td>{{device.ram|escape|default("-")}}</td>
+      <td>{{device.processor|escape|default("-")}}</td>
+      <td>{{device.inch|escape|default("-")}}</td>
+      <td>{{device.ports|escape|default("-")}}</td>
+      <td>{{device.model_description|escape|default("-")}}</td>
+      <td>{{device.garancija|escape|default("-")}}</td>
+      <td><a href="{{BASE}}ekspoziture/{{device.location_name}}">{{device.location_name}} </a></td>
+      <td><a href="{{BASE}}zaduzenja/{{device.korisnik}}">{{device.korisnik}}</a></td>
+      <td><a href="{{BASE}}history/{{device.device_id}}">History</a></td>
+
+      <td><a href="{{BASE}}edit/{{device.device_id}}">Edit</td>
+
+    </tr>
+
+  </tbody>
+  {% endfor %}
+
+</table>
+{% endblock %}

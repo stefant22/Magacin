@@ -1,0 +1,37 @@
+{% extends "_global/index.html" %}
+{% block title %}Dodaj Uređaj {% endblock %}
+
+{% block main %}
+<br>
+
+<form  method="POST">
+    <div class="form-row">
+      <div class="col">
+        
+        <select id="model_id" name="model_id" class="form-control">
+            {% for model in models  %}
+            <option type="text" id="{{model.model_id}}" name="{{model.model_id}}" value="{{model.model_id}}" >{{model.model_name}} &nbsp; &nbsp; - &nbsp; &nbsp; {{model.model_type_name}}</option>
+            {% endfor %}
+          </select>
+       
+        <input id="bar_code" name="bar_code" type="text" class="form-control" placeholder="Bar kod">
+        <input id="serial_number" name="serial_number" type="text" class="form-control" placeholder="Serijski broj">
+        <input id="garancija" name="garancija" type="text" class="form-control" placeholder="garancija">
+        <input id="korisnik" name="korisnik" type="text" class="form-control" placeholder="korisnik">
+        
+        <select id="location_id" name="location_id" class="form-control">
+          {% for location in locations %}
+               <option type="text" id="{{location.location_id}}" name="{{location.location_id}}" value="{{location.location_id}}" >{{location.location_name}}</option>
+        {% endfor %}
+             </select>
+             <br>
+        <button type="submit" class="btn btn-primary mb-2">Dodaj uredjaj</button>
+        
+
+      </div>
+    
+    </div>
+  </form>
+
+
+{% endblock %}

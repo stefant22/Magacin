@@ -1,0 +1,119 @@
+{% extends "_global/index.html" %}
+{% block title %}{{revers.revers_id}} - {{revers.revers_holder}}{% endblock %}
+{% block main %}
+{% set br = 0 %}
+<br>
+<br>
+
+<div class="row">
+    <div class="col-md-4 ">  
+            <img src="{{BASE}}assets\img\sava-logo-1.jpg" alt="">
+            <br>
+            <br>
+            <br>
+     
+            <h5>datum : {{revers.date|date("d/m/Y")}}</h5>
+
+    </div>
+    <div class="col-md-4 text-center">
+            <br>
+            <br>
+     
+        <h1>REVERS</h1>
+        <br>
+        <br>
+        <br>
+        
+        
+<h3>- {{revers.type|upper}} -</h3>
+<br>
+
+</div>
+
+
+
+<div class="col-md-4 text-right">
+    <h5>INTERNO</h5>
+    <br>
+    <br>
+    <br>
+    <br>
+   
+    <br>
+    <h5 >Br.Reversa: {{revers.revers_id}}</h5>
+</div>
+</div>
+<br>
+    <br>
+    <br>
+    <br>
+<br>
+<div>  <h5>{{revers.revers_holder}}<span> na lokaciji/ekspozituri {{revers.location_name}}  se {{revers.type|trim ("zenje",'right')}}žuje sa sledećim osnovnim sredstvima :</span></h5>  </div>
+<br>
+<table class="text-center revers"style="width:100%;  ">
+
+      
+            <tr style = " padding: 15px;">
+                <th  style = " background-color: lightgray; padding: 15px;" scope="col">Br</th>
+                <th   style = " background-color: lightgray; padding: 15px;"scope="col">Tip</th>
+                <th  style = " background-color: lightgray; padding: 15px;" scope="col">Model</th>
+                <th  style = " background-color: lightgray; padding: 15px;" scope="col">Bar kod</th>
+             
+    
+    
+    
+            </tr>
+      
+        {% for device in devices %}
+        {% set br =br + 1 %}
+    
+            <tr  style = " padding: 15px;">
+                <td  style = " padding: 15px;">{{br}}</td>
+                <td  style = " padding: 15px;">{{device.model_type_name|escape}}</td>
+                <td  style = " padding: 15px;">{{device.model_name|escape}}</td>
+                <td  style = " padding: 15px;">{{device.bar_code|escape}}</td>
+           
+    
+    
+            </tr>
+    
+     
+        {% endfor %}
+    
+    </table>
+    <br>
+   <div class="text-center"> <a class='dugme ' href="javascript:window.print();">  <button  type="button" class="btn btn-primary "> Stampaj</button></a> </div>
+    <br>
+    <br>
+    <br>
+
+    <h4 class="text-center">Šef službe : Branislav Tomić</h4>
+
+    <h4 class="text-center">Administrator : {{revers.administrator}}</h4>
+
+<h4 class="text-center">{{revers.type|trim ("zenje",'right')}}žio : {{revers.revers_holder}}</h4>
+
+
+<footer class=" container fixed-bottom m-0 p-0">
+    
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    <div class="row donjiDeo">
+            <h3 style="word-wrap: break-word  justify-content-center" class="p-5">Ovaj revers važi bez potpisa</h3> 
+            
+    <div class="col-md-10 m-0 p-0">
+        <p style="word-wrap: break-word">SAVA NEŽIVOTNO OSIGURANJE a.d.o. Beograd, Bul. vojvode Mišića 51, 11000 Beograd, www.sava-osiguranje.rs</p>
+        <p style="word-wrap: break-word">TR: 205-8273-04 Komercijalna banka a.d. Beograd, MB: 17407813, PIB: 100002516, član SAVA RE GRUPE</p>
+    </div>
+    <div class="col-md-2 m-0 p-0">
+            <img style="display:block; z-index: 2;" src="{{BASE}}assets\img\dfffff.jpg" alt="">
+
+    </div>
+
+</div>
+      </footer> 
+
+{% endblock %}

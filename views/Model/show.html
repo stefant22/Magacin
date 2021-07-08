@@ -1,0 +1,67 @@
+{% extends "_global/index.html" %}
+{% block title %}{{devices[0].model_type_name}}i{% endblock %}
+{% block main %}
+
+
+
+
+<input  id="myInput" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Pretraga">
+<br>
+<table class="table table-bordered table-hover">
+
+  <thead>
+    <tr>
+      <th scope="col">Model Type</th>
+      <th scope="col">Model Name</th>
+      <th scope="col">Bar Code</th>
+      <th scope="col">Serial Number</th>
+      {% if devices[0].model_type_id == 1 or  devices[0].model_type_id == 5 %}
+      <th scope="col">Ram</th>
+    
+      <th scope="col">Processor</th>
+      {% endif %}
+      {% if  devices[0].model_type_id == 5 or devices[0].model_type_id==2  %}
+      <th scope="col">Inch</th>
+     
+
+      <th scope="col">Ports</th>
+      {% endif %}
+      <th scope="col">Garancija</th>
+      <th scope="col">Korisnik</th>
+      <th scope="col">Location</th>
+
+
+    </tr>
+  </thead>
+  {% for device in devices %}
+  <tbody id="myTable">
+    <tr>
+      <th scope="row">{{device.model_type_name}}</th>
+      <td><a href="{{BASE}}model/{{device.model_id}}"> {{device.model_name|escape}}</td>
+      </td>
+      <td>{{device.bar_code|escape|default("-")}}</td>
+      <td>{{device.serial_number|escape|default("-")}}</td>
+      {% if devices[0].model_type_id == 1 or  devices[0].model_type_id == 5 %}
+
+
+      <td>{{device.ram|escape|default("-")}}</td>
+      <td>{{device.processor|escape|default("-")}}</td>
+      {% endif %}
+      {% if  devices[0].model_type_id == 5 or devices[0].model_type_id==2  %}
+      
+      <td>{{device.inch|escape|default("-")}}</td>
+
+      <td>{{device.ports|escape|default("-")}}</td>
+      {% endif %}
+      
+      <td>{{device.garancija|escape|default("-")}}</td>
+      <td>{{device.korisnik|escape|default("-")}}</td>
+      <td><a href="{{BASE}}ekspoziture/{{device.location_name}}">{{device.location_name}} </a></td>  
+
+    </tr>
+
+  </tbody>
+  {% endfor %}
+  
+</table>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "_global/index.html" %}
+{% block title %}{{devices[0].model_name}}{% endblock %}
+
+{% block main %}
+
+<input  id="myInput" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Pretraga">
+<br>
+      <table class="table table-bordered table-hover">
+         
+          <thead>
+            <tr>
+              <th  style = " background-color: lightgray; padding: 15px;" scope="col">Br</th>
+              <th scope="col">Model Type</th>
+              <th scope="col">Model Name</th>
+              <th scope="col">Bar Code</th>
+              <th scope="col">Serial Number</th>
+              <th scope="col">Ram</th>
+              <th scope="col">Processor</th>
+              <th scope="col">Inch</th>
+
+              <th scope="col">Ports</th>
+              <th scope="col">Korisnik</th>
+              <th scope="col">Location</th>
+
+              
+
+              
+            </tr>
+          </thead>
+          {% for device in devices %}
+          {% set br =br + 1 %}
+          <tbody id="myTable">
+            <tr>
+              <td  style = " padding: 15px;">{{br}}</td>
+              <th scope="row">{{device.model_type_name}}</th>
+              
+              <td><a href="{{BASE}}model/{{device.model_id}}"> {{device.model_name|escape}}</td>
+              <td>{{device.bar_code|escape|default("-")}}</td>
+              <td>{{device.serial_number|escape|default("-")}}</td>
+              <td>{{device.ram|escape|default("-")}}</td>
+              <td>{{device.processor|escape|default("-")}}</td>
+              <td>{{device.inch|escape|default("-")}}</td>
+              <td>{{device.ports|escape|default("-")}}</td>
+              <td>{{device.korisnik|escape|default("-")}}</td>
+
+              <td><a href="{{BASE}}ekspoziture/{{device.location_name}}">{{device.location_name}} </a></td> 
+
+            </tr>
+         
+          </tbody>
+          {% endfor %}
+        </table>
+
+
+
+
+
+
+
+
+
+      
+
+<!--
+<table style="border-style: dotted" >
+    {% for device in devices %}
+    
+
+    
+      <tr>
+        
+        <th>Model Type</th>
+        <th>model name</th>
+        <th>bar_code</th> 
+        <th>serial_number</th>
+        
+      </tr>
+      <tr>
+        <td>{{device.model_type_name}}</td>
+        <td> <a href="{{BASE}}model/{{device.model_id}}"> {{device.model_name|escape}}</td></a>
+        <td>{{device.bar_code|escape}}</td>
+        <td>{{device.serial_number|escape}} </td>
+      </tr>
+    
+     {% endfor %}
+    </table>
+  </div>
+        
+        
+    -->    {% endblock %}

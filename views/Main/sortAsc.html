@@ -1,0 +1,46 @@
+{% extends "_global/index.html" %}
+{% block title %}Svi uređaji{% endblock %}
+{% block main %}
+
+
+
+
+ 
+<table class="table table-bordered table-hover table-hover">
+
+  <thead>
+    <tr>
+      <th scope="col">Model Type</th>
+      <th scope="col">Model Name</th>
+      <th scope="col">Bar Code</th>
+      <th scope="col">Serial Number</th>
+      <th scope="col">Ram</th>
+      <th scope="col">Processor</th>
+      <th scope="col">Inch</th>
+      <th scope="col">Ports</th>
+      <th scope="col">Location</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  {% for device in devices %}
+  <tbody>
+    <tr>
+      <th scope="row">{{device.model_type_name}}</th>
+      <td><a href="{{BASE}}model/{{device.model_id}}"> {{device.model_name|escape}}</td>
+      </td>
+      <td>{{device.bar_code|escape|default("-")}}</td>
+      <td>{{device.serial_number|escape|default("-")}}</td>
+      <td>{{device.ram|escape|default("-")}}</td>
+      <td>{{device.processor|escape|default("-")}}</td>
+      <td>{{device.inch|escape|default("-")}}</td>
+      <td>{{device.ports|escape|default("-")}}</td>
+      <td>{{device.location_name|escape|default("-")}}</td>
+      <td>{{device.model_description|escape|default("-")}}</td>
+
+    </tr>
+
+  </tbody>
+  {% endfor %}
+  
+</table>
+{% endblock %}
